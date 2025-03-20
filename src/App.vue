@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// کامپوننت‌های مورد نیاز اینجا import خواهند شد
 </script>
 
 <template>
@@ -11,5 +10,4 @@
 </template>
 
 <style scoped>
-/* استایل‌های سفارشی اینجا اضافه می‌شوند */
 </style>
