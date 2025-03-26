@@ -2,41 +2,32 @@ import '@mdi/font/css/materialdesignicons.css'
 import 'vuetify/styles'
 
 
-import { createVuetify } from "vuetify";
+import { createVuetify, type ThemeDefinition } from "vuetify";
 // import '@mdi/font/css/materialdesignicons.css'
 import * as components from "vuetify/components";
 import * as directives from "vuetify/directives";
 
-const myCustomLightTheme = {
+const myCustomLightTheme: ThemeDefinition = {
   dark: false,
   colors: {
-    primary: "#1867C0",
-    "primary-darken-1": "#1F5592",
-    secondary: "#48A9A6",
-    "secondary-darken-1": "#018786",
-    error: "#B00020",
-    info: "#d0c",
-    success: "#4CAF50",
-    warning: "#FB8C00",
+    primary: '#2563EB',
+    secondary: '#03DAC6',
+    error: '#B00020',
+    gray: '#111B27',
+    info: '#2196F3',
+    success: '#4CAF50',
+    warning: '#FB8C00',
   },
-};
+}
 
 export default createVuetify({
   components,
   directives,
 
   theme: {
-    dark: false,
-    defaultTheme: "light",
+    defaultTheme: 'myCustomLightTheme',
     themes: {
-      light: {
-        colors: {
-          primary: "#d0c",
-          secondary: "#424242",
-          accent: "#82B1FF",
-          error: "#FF5252",
-        },
-      },
+      myCustomLightTheme,
     },
   },
 
