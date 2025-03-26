@@ -12,7 +12,7 @@ const dialogOpen = ref(false);
 
 <template>
   <VAppBar elevation="2" density="comfortable">
-    <VAppBarTitle class="text-left">Application Bar</VAppBarTitle>
+    <VAppBarTitle class="text-left">Weather Application</VAppBarTitle>
 
     <template v-slot:append>
       <VIcon
