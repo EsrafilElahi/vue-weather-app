@@ -39,6 +39,10 @@ export default createVuetify({
       },
     },
     VTextField: {
+      variant: 'solo',
+      density: 'compact',
+      hideDetails: "auto",
+      singleLine: true,
       class: '[&>div>div]:!shadow-none !border !border-medium-gray !rounded-lg [&>div>div]:!rounded-lg [&>div>div]:!text-secondary-text'
     }
   },

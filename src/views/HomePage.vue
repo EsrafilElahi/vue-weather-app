@@ -13,12 +13,7 @@ watch(searchValue, () => {
     <VTextField
       v-model="searchValue"
       append-inner-icon="mdi-magnify"
-      density="compact"
       label="Search for cities..."
-      class="!text-medium-gray"
-      variant="solo"
-      hide-details
-      single-line
     />
   </VContainer>
 </template>
