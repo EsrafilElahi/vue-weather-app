@@ -12,5 +12,3 @@ import { RouterView } from "vue-router";
     </div>
   </VApp>
 </template>
-
-<style scoped></style>
