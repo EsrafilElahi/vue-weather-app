@@ -1,5 +1,9 @@
+import '@mdi/font/css/materialdesignicons.css'
+import 'vuetify/styles'
+
+
 import { createVuetify } from "vuetify";
-import "vuetify/styles";
+// import '@mdi/font/css/materialdesignicons.css'
 import * as components from "vuetify/components";
 import * as directives from "vuetify/directives";
 
@@ -45,13 +49,8 @@ export default createVuetify({
       style: {
         textTransform: "none",
         outline: "none",
-        background: "red !important",
+        // background: "red !important",
       },
-    },
-    VTextField: {
-      color: "primary",
-      variant: "outlined",
-      density: "comfortable",
-    },
+    }
   },
 });

@@ -15,6 +15,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/vue-fontawesome": "^3.0.8",
     "@heroicons/vue": "^2.2.0",
+    "@mdi/font": "^7.4.47",
     "@tailwindcss/vite": "^4.0.12",
     "axios": "^1.8.3",
     "json-server": "^1.0.0-beta.3",
@@ -24,11 +25,14 @@
     "vuetify": "^3.7.19"
   },
   "devDependencies": {
+    "@tsconfig/node22": "^22.0.0",
+    "@types/node": "^22.9.0",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vue/tsconfig": "^0.7.0",
     "typescript": "~5.7.2",
     "vite": "^6.2.0",
     "vite-plugin-vue-devtools": "^7.7.2",
+    "vite-plugin-vuetify": "^2.1.0",
     "vue-tsc": "^2.2.4"
   }
 }
