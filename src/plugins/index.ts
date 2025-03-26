@@ -5,7 +5,7 @@
  */
 
 import type { App } from 'vue'
-import vuetify from './vuetify.js'
+import vuetify from './vuetify.ts'
 // import pinia from '../stores'
 // import router from '../router'
 
