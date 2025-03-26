@@ -1,7 +1,6 @@
 import '@mdi/font/css/materialdesignicons.css'
 import 'vuetify/styles'
-
-
+import { aliases, mdi } from 'vuetify/iconsets/mdi'
 import { createVuetify, type ThemeDefinition } from "vuetify";
 // import '@mdi/font/css/materialdesignicons.css'
 import * as components from "vuetify/components";
@@ -40,5 +39,13 @@ export default createVuetify({
         outline: "none",
       },
     }
+  },
+
+  icons: {
+    defaultSet: 'mdi',
+    aliases,
+    sets: {
+      mdi,
+    },
   },
 });
