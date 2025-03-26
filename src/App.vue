@@ -1,15 +1,17 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Header from "./components/Header.vue";
+</script>
 
 <template>
-  <div class="min-h-screen bg-gray-100 py-8">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h1 class="text-4xl font-bold text-primary-blue text-center !mb-2">
-        پیش‌بینی آب و هوا
-      </h1>
-    </div>
+  <vApp>
+    <div class="min-h-screen bg-gray-100">
+      <Header />
 
-    <vBtn> Button </vBtn>
-  </div>
+      <VBtn color="primary" class="mt-14"> Button </VBtn>
+      <v-btn variant="outlined" color="primary" class="mt-14"  >Primary Button</v-btn>
+
+    </div>
+  </vApp>
 </template>
 
 <style scoped></style>
