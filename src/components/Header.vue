@@ -11,7 +11,7 @@ const dialogOpen = ref(false);
 </script>
 
 <template>
-  <VAppBar elevation="2" density="comfortable">
+  <VAppBar elevation="0" class="!border !border-b-medium-gray" density="comfortable">
     <VAppBarTitle class="text-left">Weather Application</VAppBarTitle>
 
     <template v-slot:append>
