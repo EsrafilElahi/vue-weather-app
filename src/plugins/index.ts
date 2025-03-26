@@ -6,13 +6,13 @@
 
 import type { App } from 'vue'
 import vuetify from './vuetify.ts'
+import { router } from '../router'
 // import pinia from '../stores'
-// import router from '../router'
 
 
 export function registerPlugins(app: App) {
   app
     .use(vuetify)
-  // .use(router)
+    .use(router)
   // .use(pinia)
 }
