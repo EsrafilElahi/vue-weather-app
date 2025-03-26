@@ -37,6 +37,9 @@ export default createVuetify({
         textTransform: "none",
         outline: "none",
       },
+    },
+    VTextField: {
+      class: '[&>div>div]:!shadow-none !border !border-medium-gray !rounded-lg [&>div>div]:!rounded-lg [&>div>div]:!text-secondary-text'
     }
   },
 
