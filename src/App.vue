@@ -7,7 +7,7 @@ import Header from "./components/Header.vue";
     <div class="min-h-screen bg-gray-100">
       <Header />
 
-      <VBtn color="messi-light" class="mt-14"> Button </VBtn>
+      <VBtn color="gray" class="mt-14"> Button </VBtn>
       <v-btn variant="outlined" color="primary" class="mt-14"  >Primary Button</v-btn>
 
     </div>

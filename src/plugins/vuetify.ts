@@ -34,13 +34,10 @@ export default createVuetify({
   defaults: {
     VBtn: {
       color: "primary",
-      variant: "outlined",
-      rounded: "0",
-      size: "large",
+      size: "medium",
       style: {
         textTransform: "none",
         outline: "none",
-        // background: "red !important",
       },
     }
   },
