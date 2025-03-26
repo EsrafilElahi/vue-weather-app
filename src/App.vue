@@ -3,15 +3,14 @@ import Header from "./components/Header.vue";
 </script>
 
 <template>
-  <vApp>
-    <div class="min-h-screen bg-gray-100">
+  <VApp>
+    <div class="min-h-screen bg-gray-100 pt-14">
       <Header />
 
-      <VBtn color="gray" class="mt-14"> Button </VBtn>
-      <v-btn variant="outlined" color="primary" class="mt-14"  >Primary Button</v-btn>
-
+      <VBtn color="gray"> Button </VBtn>
+      <v-btn variant="outlined" color="primary">Primary Button</v-btn>
     </div>
-  </vApp>
+  </VApp>
 </template>
 
 <style scoped></style>

@@ -6,8 +6,8 @@
 
     <template v-slot:append>
       <VIcon
-        color="secondary-warning"
-        class="mr-3"
+        color="info"
+        class="mr-3 cursor-pointer"
         icon="mdi-information"
       ></VIcon>
     </template>
