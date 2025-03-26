@@ -1,19 +1,19 @@
 @import "tailwindcss";
 
 
-@theme{
-  --color-primary-blue: #d0c
-  --color-dark-blue: #d0c
-  --color-light-blue: #d0c
-  --color-dark-gray: #d0c
-  --color-light-gray: #d0c
-  --color-lighter-gray: #d0c
-  --color-medium-gray: #d0c
-  --color-border-gray: #d0c
-  --color-primary-text: #d0c
-  --color-secondary-text: #d0c
-  --color-disabled-text: #d0c
-  --color-white-text: #d0c
+@theme {
+  --color-primary-blue: #2563EB;
+  --color-dark-blue: #1D4ED8;
+  --color-light-blue: #60A5FA;
+  --color-dark-gray: #111B27;
+  --color-light-gray: #F3F4F6;
+  --color-lighter-gray: #E5E7EB;
+  --color-medium-gray: #D1D5DB;
+  --color-border-gray: #9CA3AF;
+  --color-primary-text: #111827;
+  --color-secondary-text: #4B5563;
+  --color-disabled-text: #9CA3AF;
+  --color-white-text: #FFFFFF;
 }
 
 :root {
@@ -53,9 +53,11 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -76,6 +78,7 @@ button:focus-visible {
   :root {
     background-color: #ffffff;
   }
+
   button {
     background-color: #f9f9f9;
   }
