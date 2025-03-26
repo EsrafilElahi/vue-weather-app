@@ -2,7 +2,18 @@
 
 
 @theme{
-  --color-accent: #d0c
+  --color-primary-blue: #d0c
+  --color-dark-blue: #d0c
+  --color-light-blue: #d0c
+  --color-dark-gray: #d0c
+  --color-light-gray: #d0c
+  --color-lighter-gray: #d0c
+  --color-medium-gray: #d0c
+  --color-border-gray: #d0c
+  --color-primary-text: #d0c
+  --color-secondary-text: #d0c
+  --color-disabled-text: #d0c
+  --color-white-text: #d0c
 }
 
 :root {
