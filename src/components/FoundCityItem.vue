@@ -1,11 +1,25 @@
 <script setup lang="ts">
+import { watch, watchEffect } from "vue";
+
 const props = defineProps(["cityItem"]);
+
+// Use watch instead of watchEffect for specific prop observation
+// watch(
+//   () => props.cityItem,
+//   (newVal) => {
+//     if (newVal) {
+//       console.log('cityItem:', newVal);
+//     }
+//   },
+//   { immediate: true }
+// );
 </script>
 
 <template>
   <VCard
     density="compact"
     class="d-flex justify-between items-center !p-2 rounded-lg"
+    :aria-label="`Location: ${cityItem.text}`"
     link
   >
     <VRow align="center">

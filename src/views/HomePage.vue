@@ -4,7 +4,7 @@ import FoundCityItem from "@/components/FoundCityItem.vue";
 import { useDebounce } from "@/composables/useDebounce";
 import { ref } from "vue";
 
-const cities = ref<any>([]);
+const cities = ref<any | null>(null);
 
 const debouncedValue = useDebounce(async (val: string) => {
   const citiesFound = await fetchCity(val);
@@ -26,10 +26,13 @@ const handleInput = (e: Event) => {
     />
 
     <div
-      v-if="cities.length > 0"
+      v-if="cities !== null && cities?.length > 0"
       :class="{ 'flex flex-col gap-2 mt-1': 'cities.length > 0' }"
     >
       <FoundCityItem v-for="city in cities" :key="city.id" :cityItem="city" />
     </div>
+    <VCard v-else-if="cities !== null && cities?.length === 0">
+      <VCardText class="text-error-red">No City Found</VCardText>
+    </VCard>
   </VContainer>
 </template>
