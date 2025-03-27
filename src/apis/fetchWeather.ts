@@ -1,13 +1,12 @@
-import type { AxiosError } from "axios";
+import type { AxiosError, AxiosRequestConfig } from "axios";
 import { axiosInstance } from "./axios";
 import { useToast } from 'vue-toast-notification';
 
 
 const fetchWeatherCityBaseUrl = import.meta.env.VITE_FETCH_WEATHER_CITY_BASE_URL
 
-export const fetchWeatherCity = async (query: string) => {
+export const fetchWeatherCity = async (query: string, config?: AxiosRequestConfig) => {
   const toast = useToast();
-
 
   try {
     const res = await axiosInstance.get(`/weather`, {
@@ -17,6 +16,7 @@ export const fetchWeatherCity = async (query: string) => {
         units: 'metric',
         APPID: import.meta.env.VITE_WEATHER_APPID,
       },
+      ...config,
     });
 
     return res.data
