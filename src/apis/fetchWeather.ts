@@ -22,12 +22,22 @@ export const fetchWeatherCity = async (query: string, config?: AxiosRequestConfi
     return res.data
   } catch (error) {
     const axiosError = error as AxiosError;
-    toast.open({
-      type: 'error',
-      message: axiosError?.response?.statusText || 'Something went wrong!',
-      duration: 1000,
-      position: 'top'
-    });
+    console.log({ axiosError })
+    if (axiosError.message === 'canceled') {
+      toast.open({
+        type: 'info',
+        message: "api call canceled",
+        duration: 1000,
+        position: 'top'
+      });
+    } else {
+      toast.open({
+        type: 'error',
+        message: axiosError?.response?.statusText || 'Something went wrong!',
+        duration: 1000,
+        position: 'top'
+      });
+    }
     return Promise.reject(axiosError);
   }
 };
