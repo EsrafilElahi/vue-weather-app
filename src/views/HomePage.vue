@@ -2,12 +2,23 @@
 import { fetchCity } from "@/apis/fetchCity";
 import FoundCityItem from "@/components/FoundCityItem.vue";
 import { useDebounce } from "@/composables/useDebounce";
-import { ref } from "vue";
+import { onBeforeUnmount, ref } from "vue";
 
 const cities = ref<any | null>(null);
+let abortController: AbortController | null = null;
 
 const debouncedValue = useDebounce(async (val: string) => {
-  const citiesFound = await fetchCity(val);
+  // Abort previous request
+  if (abortController) {
+    abortController.abort();
+  }
+
+  // Create new controller for this request
+  abortController = new AbortController();
+
+  const citiesFound = await fetchCity(val, {
+    signal: abortController.signal,
+  });
   cities.value = citiesFound;
 }, 600);
 
@@ -15,6 +26,12 @@ const handleInput = (e: Event) => {
   const target = e.target as HTMLInputElement;
   debouncedValue(target.value);
 };
+
+onBeforeUnmount(() => {
+  if (abortController) {
+    abortController.abort();
+  }
+});
 </script>
 
 <template>
