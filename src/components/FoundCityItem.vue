@@ -1,7 +1,14 @@
 <script setup lang="ts">
+import { fetchWeatherCity } from "@/apis/fetchWeather";
 import { watch, watchEffect } from "vue";
 
 const props = defineProps(["cityItem"]);
+
+const handleFetchWeatherCity = async () => {
+  const res = await fetchWeatherCity(props.cityItem.text);
+  console.log("res :", res);
+  return res;
+};
 
 // Use watch instead of watchEffect for specific prop observation
 // watch(
@@ -17,6 +24,7 @@ const props = defineProps(["cityItem"]);
 
 <template>
   <VCard
+    @click="handleFetchWeatherCity"
     density="compact"
     class="d-flex justify-between items-center !p-2 rounded-lg"
     :aria-label="`Location: ${cityItem.text}`"
