@@ -11,8 +11,14 @@ const dialogOpen = ref(false);
 </script>
 
 <template>
-  <VAppBar elevation="0" class="!border !border-b-medium-gray" density="comfortable">
-    <VAppBarTitle class="text-left">Weather Application</VAppBarTitle>
+  <VAppBar
+    elevation="0"
+    class="!border !border-b-medium-gray"
+    density="comfortable"
+  >
+    <VAppBarTitle class="text-left">
+      <RouterLink :to="{name: 'home'}"> Weather Application </RouterLink>
+    </VAppBarTitle>
 
     <template v-slot:append>
       <VIcon
