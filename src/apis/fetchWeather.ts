@@ -1,6 +1,6 @@
 import { axiosInstance } from "./axios";
 
-const fetchCityBaseUrl = import.meta.env.VITE_FETCH_CITY_BASE_URL
+const fetchWeatherCityBaseUrl = import.meta.env.VITE_FETCH_WEATHER_CITY_BASE_URL
 
 export const fetchCity = async (query: string) => {
   try {
@@ -9,7 +9,7 @@ export const fetchCity = async (query: string) => {
         access_token: import.meta.env.VITE_WEATHER_ACCESS_TOKEN,
         types: 'place',
       },
-      baseURL: fetchCityBaseUrl,
+      baseURL: fetchWeatherCityBaseUrl,
     });
     return res.data.features
   } catch (error) {
