@@ -2,6 +2,7 @@
 import { fetchWeatherCity } from "@/apis/fetchWeather";
 import { onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { useRoute, type RouteLocationNormalized } from "vue-router";
+import { useToast } from "vue-toast-notification";
 
 interface Params {
   city: string;
@@ -13,7 +14,36 @@ type CustomRoute = RouteLocationNormalized & {
 
 const route = useRoute() as CustomRoute;
 const city = ref(null);
+const toast = useToast();
 let abortController: AbortController | null = null;
+
+const getStoredCities = () => {
+  const cities = localStorage.getItem("savedCities");
+  return cities ? JSON.parse(cities) : [];
+};
+
+const handleStoreCityInLocalStorage = (city: any) => {
+  if (city !== null) {
+    const storedCities = getStoredCities();
+    console.log("storedCities :", storedCities);
+    const exist = storedCities.some(
+      (storedCity: any) => storedCity.name === city.name
+    );
+    if (exist) {
+      toast.open({
+        type: "error",
+        message: "city is already exist in local storage!",
+        duration: 2000,
+        position: "top",
+      });
+    } else {
+      localStorage.setItem(
+        "savedCities",
+        JSON.stringify([...storedCities, city])
+      );
+    }
+  }
+};
 
 const handleFetchWeatherCity = async () => {
   // Abort previous request
@@ -31,6 +61,7 @@ const handleFetchWeatherCity = async () => {
   console.log("res :", res);
 
   if (res.cod === 200) {
+    handleStoreCityInLocalStorage(res);
     city.value = res;
   }
 };
