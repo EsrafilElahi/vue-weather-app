@@ -12,3 +12,8 @@ export const debounce = <F extends AnyCallbackFunc>(
     timer = setTimeout(() => fn(...args), delay);
   };
 };
+
+export const getStoredCities = () => {
+  const cities = localStorage.getItem("savedCities");
+  return cities ? JSON.parse(cities) : [];
+};
