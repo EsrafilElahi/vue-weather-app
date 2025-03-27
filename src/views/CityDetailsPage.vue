@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { fetchWeatherCity } from "@/apis/fetchWeather";
-import { onBeforeUnmount, onMounted, ref, watch, watchEffect } from "vue";
+import { onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { useRoute, type RouteLocationNormalized } from "vue-router";
 
 interface Params {
