@@ -12,7 +12,7 @@ export const router: Router = createRouter({
 
     },
     {
-      path: "/weather/:state/:city",
+      path: "/weather/:city",
       name: "cityDetailsPage",
       component: CityDetailsPage,
     },
