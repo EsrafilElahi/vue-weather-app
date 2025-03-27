@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { fetchWeatherCity } from "@/apis/fetchWeather";
+import { getStoredCities } from "@/lib/utils";
 import { onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { useRoute, type RouteLocationNormalized } from "vue-router";
 import { useToast } from "vue-toast-notification";
@@ -17,15 +18,10 @@ const city = ref(null);
 const toast = useToast();
 let abortController: AbortController | null = null;
 
-const getStoredCities = () => {
-  const cities = localStorage.getItem("savedCities");
-  return cities ? JSON.parse(cities) : [];
-};
-
 const handleStoreCityInLocalStorage = (city: any) => {
   if (city !== null) {
     const storedCities = getStoredCities();
-    console.log("storedCities :", storedCities);
+
     const exist = storedCities.some(
       (storedCity: any) => storedCity.name === city.name
     );
