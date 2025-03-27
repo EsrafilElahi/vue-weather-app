@@ -1,13 +1,15 @@
 <script setup lang="ts">
-import { fetchWeatherCity } from "@/apis/fetchWeather";
 import { watch, watchEffect } from "vue";
+import { useRouter } from "vue-router";
 
+const router = useRouter();
 const props = defineProps(["cityItem"]);
 
-const handleFetchWeatherCity = async () => {
-  const res = await fetchWeatherCity(props.cityItem.text);
-  console.log("res :", res);
-  return res;
+const redirectToCityDetailsPage = () => {
+  router.push({
+    name: "cityDetailsPage",
+    params: { city: props.cityItem.text },
+  });
 };
 
 // Use watch instead of watchEffect for specific prop observation
@@ -18,13 +20,13 @@ const handleFetchWeatherCity = async () => {
 //       console.log('cityItem:', newVal);
 //     }
 //   },
-//   { immediate: true }
+//   { immediate: true } // need for run first time
 // );
 </script>
 
 <template>
   <VCard
-    @click="handleFetchWeatherCity"
+    @click="redirectToCityDetailsPage"
     density="compact"
     class="d-flex justify-between items-center !p-2 rounded-lg"
     :aria-label="`Location: ${cityItem.text}`"
