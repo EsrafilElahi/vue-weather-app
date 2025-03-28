@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { fetchWeatherCity } from "@/apis/fetchWeather";
 import { getStoredCities } from "@/lib/utils";
-import { onBeforeUnmount, onMounted, ref, watch } from "vue";
+import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { useRoute, type RouteLocationNormalized } from "vue-router";
 import { useToast } from "vue-toast-notification";
 import WeatherDetailCard from "@/components/WeatherDetailCard.vue";
@@ -15,7 +15,7 @@ type CustomRoute = RouteLocationNormalized & {
 };
 
 const route = useRoute() as CustomRoute;
-const city = ref(null);
+const city = ref<any | null>(null);
 const toast = useToast();
 let abortController: AbortController | null = null;
 
@@ -92,33 +92,87 @@ onBeforeUnmount(() => {
       <VCol cols="9" class="flex flex-col gap-5">
         <VRow>
           <VCol cols="12">
-            <p class="text-2xl font-bold">new york</p>
+            <p v-capitalize class="text-2xl font-bold">{{ city?.name }}</p>
           </VCol>
 
           <VCol cols="12">
-            <p class="text-text-gray">wendnesday</p>
+            <p v-capitalize class="text-text-gray">{{ city?.sys?.country }}</p>
           </VCol>
         </VRow>
 
-        <VRow class="flex gap-4">
-          <p class="text-3xl font-bold">23C</p>
-          <p>partly cloudy</p>
+        <VRow class="flex gap-5">
+          <p class="text-3xl font-bold">{{ city?.main?.temp }} °C</p>
+          <div>
+            <p v-capitalize>{{ city?.weather?.[0]?.description }}</p>
+            <p class="text-text-gray text-sm">
+              Feels like {{ city?.main?.feels_like }}
+            </p>
+          </div>
         </VRow>
       </VCol>
 
       <VCol cols="3" class="flex flex-col justify-between items-end">
-        <p>add to favorite</p>
-        <p>icon weather</p>
+        <div
+          class="flex justify-between items-start gap-2 !p-2 rounded-lg cursor-pointer"
+        >
+          <!-- bg-contrast-blue -->
+          <VBtn
+            prepend-icon="mdi-star"
+            elevation="0"
+            variant="tonal"
+            rounded="lg"
+          >
+            <template v-slot:prepend>
+              <VIcon class="mr-2" />
+            </template>
+            add to favorite
+          </VBtn>
+        </div>
+
+        <img
+          alt="weather icon"
+          :src="`https://openweathermap.org/img/wn/${city?.weather?.[0]?.icon}@2x.png`"
+        />
       </VCol>
     </VRow>
 
     <VRow class="!grid grid-cols-1 md:!grid-cols-2 lg:!grid-cols-3 gap-4">
-      <WeatherDetailCard />
-      <WeatherDetailCard />
-      <WeatherDetailCard />
-      <WeatherDetailCard />
-      <WeatherDetailCard />
-      <WeatherDetailCard />
+      <WeatherDetailCard
+        :icon="'mdi-weather-dust'"
+        :weather-property-key="'wind'"
+        :weather-property-value="`${city?.wind?.speed} km/h`"
+        :sub-description="'normal'"
+      />
+      <WeatherDetailCard
+        :icon="'mdi-water'"
+        :weather-property-key="'humidity'"
+        :weather-property-value="`${city?.main?.humidity} %`"
+        :sub-description="'low'"
+      />
+      <WeatherDetailCard
+        :icon="'mdi-eye'"
+        :weather-property-key="'grand level'"
+        :weather-property-value="`${city?.main?.grnd_level}`"
+        :sub-description="'normal'"
+      />
+      <WeatherDetailCard
+        :icon="'mdi-thermometer'"
+        :weather-property-key="'pressure'"
+        :weather-property-value="`${city?.main?.pressure} km`"
+        :sub-description="'high'"
+      />
+      <WeatherDetailCard
+        :icon="'mdi-weather-sunset-up'"
+        :weather-property-key="'sea level'"
+        :weather-property-value="`${city?.main?.sea_level} mm`"
+        :sub-description="'mid'"
+      />
+      <WeatherDetailCard
+        :icon="'mdi-weather-hail'"
+        :weather-property-key="'temp max'"
+        :weather-property-value="`${city?.main?.temp_max} °C`"
+        :sub-description="'low'"
+      />
     </VRow>
   </VContainer>
 </template>
