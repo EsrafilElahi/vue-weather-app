@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { fetchWeatherCity } from "@/apis/fetchWeather";
 import { getStoredCities } from "@/lib/utils";
-import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
+import { onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { useRoute, type RouteLocationNormalized } from "vue-router";
 import { useToast } from "vue-toast-notification";
 import WeatherDetailCard from "@/components/WeatherDetailCard.vue";
@@ -38,6 +38,12 @@ const handleStoreCityInLocalStorage = (city: any) => {
         "savedCities",
         JSON.stringify([...storedCities, city])
       );
+      toast.open({
+        type: "success",
+        message: "city stored in local storage!",
+        duration: 2000,
+        position: "top",
+      });
     }
   }
 };
@@ -55,10 +61,8 @@ const handleFetchWeatherCity = async () => {
     signal: abortController.signal,
   });
 
-  console.log("res :", res);
-
   if (res.cod === 200) {
-    handleStoreCityInLocalStorage(res);
+    // handleStoreCityInLocalStorage(res);
     city.value = res;
   }
 };
@@ -113,9 +117,9 @@ onBeforeUnmount(() => {
 
       <VCol cols="3" class="flex flex-col justify-between items-end">
         <div
+          @click="handleStoreCityInLocalStorage(city)"
           class="flex justify-between items-start gap-2 !p-2 rounded-lg cursor-pointer"
         >
-          <!-- bg-contrast-blue -->
           <VBtn
             prepend-icon="mdi-star"
             elevation="0"
