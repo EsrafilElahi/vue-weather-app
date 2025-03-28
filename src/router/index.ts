@@ -9,12 +9,17 @@ export const router: Router = createRouter({
       path: "/",
       name: "home",
       component: HomePage,
-
+      meta: {
+        title: 'Home'
+      }
     },
     {
       path: "/weather/:city",
       name: "cityDetailsPage",
       component: CityDetailsPage,
+      meta: {
+        title: 'City'
+      }
     },
     {
       path: "/:catchAll(.*)",
@@ -22,3 +27,12 @@ export const router: Router = createRouter({
     },
   ],
 });
+
+router.beforeEach((to, from, next) => {
+  const title = to.params.city || to.meta.title
+
+  if (document?.title) {
+    window.document.title = `Weather App | ${title}`;
+  }
+  next();
+})
