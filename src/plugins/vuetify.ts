@@ -38,6 +38,16 @@ export default createVuetify({
         outline: "none",
       },
     },
+    VCol: {
+      style: {
+        padding: '0 !important'
+      }
+    },
+    VRow: {
+      style: {
+        margin: '0 !important'
+      }
+    },
     VTextField: {
       variant: 'solo',
       density: 'compact',
