@@ -22,7 +22,7 @@ export const fetchWeatherCity = async (query: string, config?: AxiosRequestConfi
     return res.data
   } catch (error) {
     const axiosError = error as AxiosError;
-    console.log({ axiosError })
+
     if (axiosError.message === 'canceled') {
       toast.open({
         type: 'info',

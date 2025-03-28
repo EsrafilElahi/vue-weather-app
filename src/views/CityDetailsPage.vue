@@ -71,8 +71,6 @@ onMounted(() => {
 watch(
   () => route.params.city,
   (newCity, oldCity) => {
-    console.log({ newCity, oldCity });
-
     if (newCity && newCity !== oldCity) {
       handleFetchWeatherCity();
     }

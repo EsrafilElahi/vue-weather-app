@@ -40,13 +40,6 @@ onBeforeUnmount(() => {
     abortController.abort();
   }
 });
-
-watchEffect(() => {
-  console.log(
-    "cities !== null && cities?.length > 0 :",
-    cities.value !== null && cities.value.length > 0
-  );
-});
 </script>
 
 <template>
