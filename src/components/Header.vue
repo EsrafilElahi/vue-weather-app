@@ -17,7 +17,7 @@ const dialogOpen = ref(false);
     density="comfortable"
   >
     <VAppBarTitle class="text-left">
-      <RouterLink :to="{name: 'home'}"> Weather Application </RouterLink>
+      <RouterLink :to="{ name: 'home' }"> Weather Application </RouterLink>
     </VAppBarTitle>
 
     <template v-slot:append>
