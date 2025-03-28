@@ -27,7 +27,7 @@ const handleStoreCityInLocalStorage = (city: any) => {
     );
     if (exist) {
       toast.open({
-        type: "error",
+        type: "warning",
         message: "city is already exist in local storage!",
         duration: 2000,
         position: "top",
