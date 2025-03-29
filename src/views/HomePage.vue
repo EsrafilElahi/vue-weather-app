@@ -1,10 +1,22 @@
 <script setup lang="ts">
 import { fetchCity } from "@/apis/fetchCity";
-import FoundCityItem from "@/components/FoundCityItem.vue";
-import StoredCityItem from "@/components/StoredCityItem.vue";
 import { useDebounce } from "@/composables/useDebounce";
 import { getStoredCities } from "@/lib/utils";
-import { onBeforeUnmount, ref, watchEffect } from "vue";
+import { defineAsyncComponent, onBeforeUnmount, ref, watchEffect } from "vue";
+import LoadingComponent from "@/components/LoadingComponent.vue";
+import ErrorComponent from "@/components/ErrorComponent.vue";
+
+const FoundCityItem = defineAsyncComponent({
+  loader: () => import("@/components/FoundCityItem.vue"),
+  loadingComponent: LoadingComponent,
+  errorComponent: ErrorComponent,
+});
+
+const StoredCityItem = defineAsyncComponent({
+  loader: () => import("@/components/StoredCityItem.vue"),
+  loadingComponent: LoadingComponent,
+  errorComponent: ErrorComponent,
+});
 
 const cities = ref<any | null>(null);
 let abortController: AbortController | null = null;
