@@ -1,10 +1,8 @@
 <script setup lang="ts">
-import { fetchWeatherCity } from "@/apis/fetchWeather";
-import { getStoredCities } from "@/lib/utils";
-import { onBeforeUnmount, onMounted, ref, watch } from "vue";
+import { computed, onBeforeUnmount, onMounted, watch } from "vue";
 import { useRoute, type RouteLocationNormalized } from "vue-router";
-import { useToast } from "vue-toast-notification";
 import WeatherDetailCard from "@/components/WeatherDetailCard.vue";
+import { useStore } from "vuex";
 
 interface Params {
   city: string;
@@ -15,37 +13,12 @@ type CustomRoute = RouteLocationNormalized & {
 };
 
 const route = useRoute() as CustomRoute;
-const city = ref<any | null>(null);
-const toast = useToast();
+const store = useStore();
 let abortController: AbortController | null = null;
+const city = computed(() => store.getters["getCityDetails"]);
 
 const handleStoreCityInLocalStorage = (city: any) => {
-  if (city !== null) {
-    const storedCities = getStoredCities();
-
-    const exist = storedCities.some(
-      (storedCity: any) => storedCity.name === city.name
-    );
-    if (exist) {
-      toast.open({
-        type: "warning",
-        message: "city is already exist in local storage!",
-        duration: 2000,
-        position: "top",
-      });
-    } else {
-      localStorage.setItem(
-        "savedCities",
-        JSON.stringify([...storedCities, city])
-      );
-      toast.open({
-        type: "success",
-        message: "city stored in local storage!",
-        duration: 2000,
-        position: "top",
-      });
-    }
-  }
+  return store.dispatch("setSavedCitiesAction", { city });
 };
 
 const handleFetchWeatherCity = async () => {
@@ -57,14 +30,10 @@ const handleFetchWeatherCity = async () => {
   // Create new controller for this request
   abortController = new AbortController();
 
-  const res = await fetchWeatherCity(route.params.city, {
-    signal: abortController.signal,
+  store.dispatch("setCityDetailsAction", {
+    city: route.params.city,
+    abortController: abortController,
   });
-
-  if (res.cod === 200) {
-    // handleStoreCityInLocalStorage(res);
-    city.value = res;
-  }
 };
 
 onMounted(() => {

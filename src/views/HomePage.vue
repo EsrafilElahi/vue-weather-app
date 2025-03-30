@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useDebounce } from "@/composables/useDebounce";
-import { getStoredCities } from "@/lib/utils";
 import {
   computed,
   defineAsyncComponent,

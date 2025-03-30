@@ -1,11 +1,13 @@
 import { createStore } from 'vuex';
 import { createCustomLogger } from '@/plugins/customLogger';
 import HomeModule from './modules/Home'
+import CityDetailsModule from './modules/cityDetails'
 
 
 export default createStore({
   modules: {
-    home: HomeModule
+    home: HomeModule,
+    cityDetails: CityDetailsModule
   },
   strict: process.env.NODE_ENV !== 'production',
   plugins: [

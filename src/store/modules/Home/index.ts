@@ -14,13 +14,13 @@ interface SetFoundCitiesPayload {
   abortController: AbortController;
 }
 interface SetSavedCitiesPayload {
-  city: any | null;
+  city: any;
 }
 
 // state
 const state: State = {
   foundCities: null,
-  savedCities: [],
+  savedCities: getStoredCities(),
 };
 
 // getters
