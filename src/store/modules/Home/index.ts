@@ -65,7 +65,8 @@ const actions = {
     const { city } = payload
 
     if (city !== null) {
-      const storedCities = getStoredCities();
+      // const storedCities = getStoredCities();
+      const storedCities = state.savedCities;
 
       const exist = storedCities.some(
         (storedCity: any) => storedCity.name === city.name
