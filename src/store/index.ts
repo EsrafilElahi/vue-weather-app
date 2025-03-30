@@ -1,4 +1,4 @@
-import { createStore, type MutationPayload } from 'vuex';
+import { createStore } from 'vuex';
 import { createCustomLogger } from '@/plugins/customLogger';
 import HomeModule from './modules/Home'
 
@@ -12,7 +12,6 @@ export default createStore({
     createCustomLogger({
       collapsed: true,
       logState: process.env.NODE_ENV === 'development',
-      filter: (mutation: MutationPayload) => !mutation.type.startsWith('@private/'),
       logger: {
         ...console,
         groupCollapsed: console.log,

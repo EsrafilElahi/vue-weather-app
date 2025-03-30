@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { fetchCity } from "@/apis/fetchCity";
 import { useDebounce } from "@/composables/useDebounce";
 import { getStoredCities } from "@/lib/utils";
 import {
   computed,
   defineAsyncComponent,
   onBeforeUnmount,
-  ref,
   watchEffect,
 } from "vue";
 import LoadingComponent from "@/components/LoadingComponent.vue";
@@ -25,17 +23,11 @@ const StoredCityItem = defineAsyncComponent({
   errorComponent: ErrorComponent,
 });
 
-const cities = ref<any | null>(null);
 let abortController: AbortController | null = null;
 const store = useStore();
 
-// createLogger
 const foundCities = computed(() => store.getters["getFoundCities"]);
 const savedCities = computed(() => store.getters["getSavedCities"]);
-
-console.log({ foundCities: foundCities.value, savedCities: savedCities.value });
-
-const storedCities = getStoredCities();
 
 const debouncedValue = useDebounce(async (val: string) => {
   // Abort previous request
@@ -45,15 +37,7 @@ const debouncedValue = useDebounce(async (val: string) => {
 
   // Create new controller for this request
   abortController = new AbortController();
-
-  if (val.trim().length > 1) {
-    const results = await fetchCity(val, {
-      signal: abortController.signal,
-    });
-    cities.value = results;
-  } else {
-    cities.value = null; // Reset when search is cleared
-  }
+  store.dispatch("setFoundCitiesAction", { val, abortController });
 }, 600);
 
 const handleInput = (e: Event) => {
@@ -77,22 +61,29 @@ onBeforeUnmount(() => {
     />
 
     <div
-      v-if="cities !== null && cities?.length > 0"
-      :class="{ 'flex flex-col gap-2 mt-1': 'cities.length > 0' }"
+      v-if="foundCities !== null && foundCities?.length > 0"
+      :class="{ 'flex flex-col gap-2 mt-1': 'foundCities.length > 0' }"
     >
-      <FoundCityItem v-for="city in cities" :key="city.id" :cityItem="city" />
+      <FoundCityItem
+        v-for="city in foundCities"
+        :key="city.id"
+        :cityItem="city"
+      />
     </div>
-    <VCard v-else-if="cities !== null && cities?.length === 0" class="mt-1">
+    <VCard
+      v-else-if="foundCities !== null && foundCities?.length === 0"
+      class="mt-1"
+    >
       <VCardText class="text-error-red">No City Found</VCardText>
     </VCard>
 
     <div
-      v-else-if="storedCities.length > 0"
-      :class="{ 'flex flex-col gap-2 mt-10': 'storedCities.length > 0' }"
+      v-else-if="savedCities.length > 0"
+      :class="{ 'flex flex-col gap-2 mt-10': 'savedCities.length > 0' }"
     >
       <h2 class="text-2xl text-text-gray">saved cities</h2>
       <StoredCityItem
-        v-for="storedCity in storedCities"
+        v-for="storedCity in savedCities"
         :key="storedCity.id"
         :cityItem="storedCity"
       />
