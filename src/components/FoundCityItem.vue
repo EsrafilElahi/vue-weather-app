@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { watch, watchEffect } from "vue";
 import { useRouter } from "vue-router";
+import { useStore } from "vuex";
 
 const router = useRouter();
+const store = useStore();
 const props = defineProps(["cityItem"]);
 
 const redirectToCityDetailsPage = () => {
@@ -10,6 +12,7 @@ const redirectToCityDetailsPage = () => {
     name: "cityDetailsPage",
     params: { city: props.cityItem.text },
   });
+  store.commit("setFoundCities", null);
 };
 
 // Use watch instead of watchEffect for specific prop observation
