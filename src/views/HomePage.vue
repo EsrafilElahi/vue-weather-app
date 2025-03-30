@@ -29,9 +29,11 @@ const cities = ref<any | null>(null);
 let abortController: AbortController | null = null;
 const store = useStore();
 
-const storesr = computed(() => store);
+// createLogger
+const foundCities = computed(() => store.getters["getFoundCities"]);
+const savedCities = computed(() => store.getters["getSavedCities"]);
 
-console.log("storesr :", storesr.value.state.count);
+console.log({ foundCities: foundCities.value, savedCities: savedCities.value });
 
 const storedCities = getStoredCities();
 
