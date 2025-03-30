@@ -2,6 +2,7 @@ import { fetchCity } from "@/apis/fetchCity";
 import { getStoredCities } from "@/lib/utils";
 import { useToast } from "vue-toast-notification";
 import type { Commit } from "vuex";
+import ModalInfoModule from "./ModalInfo";
 
 // types
 interface State {
@@ -95,5 +96,8 @@ export default {
   state,
   getters,
   mutations,
-  actions
+  actions,
+  modules: {
+    modalInfo: ModalInfoModule
+  }
 }
