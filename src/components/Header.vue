@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import Modal from "@/components/Modal.vue";
+import { useStore } from "vuex";
 
-const TITLE = "ESRAFIL ELAHI";
-const TEXT = "Senior Frontend Engineer at Okala";
+const store = useStore();
+const completeInfo = computed(() => store.getters["getInfoComplete"]);
 
 // for multiple model
 // const dialogOpen2 = ref(false);
@@ -31,6 +32,10 @@ const dialogOpen = ref(false);
 
     <!-- for multiple model -->
     <!-- <Modal v-model:dialogOpen="dialogOpen" v-model:dialogOpen2="dialogOpen2" /> -->
-    <Modal v-model:dialogOpen="dialogOpen" :title="TITLE" :text="TEXT" />
+    <Modal
+      v-model:dialogOpen="dialogOpen"
+      :title="completeInfo.title"
+      :text="completeInfo.info"
+    />
   </VAppBar>
 </template>
