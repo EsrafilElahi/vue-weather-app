@@ -1,5 +1,4 @@
 import { fetchCity } from "@/apis/fetchCity";
-import { getStoredCities } from "@/lib/utils";
 import { useToast } from "vue-toast-notification";
 import type { Commit } from "vuex";
 import ModalInfoModule from "./ModalInfo";
@@ -20,7 +19,7 @@ interface SetSavedCitiesPayload {
 // state
 const state: State = {
   foundCities: null,
-  savedCities: getStoredCities(),
+  savedCities: [],
 };
 
 // getters
@@ -42,7 +41,10 @@ const mutations = {
 
   setSavedCities: (state: State, payload: any[]) => {
     state.savedCities = payload
-  }
+  },
+  RESTORE_MUTATION(state: State, payload: any) {
+    Object.assign(state, payload);
+  },
 }
 
 // actions

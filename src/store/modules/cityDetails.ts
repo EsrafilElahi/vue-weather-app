@@ -22,7 +22,10 @@ const getters = {
 const mutations = {
   setCityDetails: (state: State, payload: any) => {
     return state.cityDetails = payload
-  }
+  },
+  RESTORE_MUTATION(state: State, payload: any) {
+    Object.assign(state, payload);
+  },
 }
 
 // actions
