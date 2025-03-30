@@ -2,9 +2,16 @@
 import { fetchCity } from "@/apis/fetchCity";
 import { useDebounce } from "@/composables/useDebounce";
 import { getStoredCities } from "@/lib/utils";
-import { defineAsyncComponent, onBeforeUnmount, ref, watchEffect } from "vue";
+import {
+  computed,
+  defineAsyncComponent,
+  onBeforeUnmount,
+  ref,
+  watchEffect,
+} from "vue";
 import LoadingComponent from "@/components/LoadingComponent.vue";
 import ErrorComponent from "@/components/ErrorComponent.vue";
+import { useStore } from "vuex";
 
 const FoundCityItem = defineAsyncComponent({
   loader: () => import("@/components/FoundCityItem.vue"),
@@ -20,6 +27,11 @@ const StoredCityItem = defineAsyncComponent({
 
 const cities = ref<any | null>(null);
 let abortController: AbortController | null = null;
+const store = useStore();
+
+const storesr = computed(() => store);
+
+console.log("storesr :", storesr.value.state.count);
 
 const storedCities = getStoredCities();
 
