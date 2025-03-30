@@ -1,11 +1,11 @@
 import { createStore, type MutationPayload } from 'vuex';
 import { createCustomLogger } from '@/plugins/customLogger';
-
+import HomeModule from './modules/Home'
 
 
 export default createStore({
   modules: {
-
+    home: HomeModule
   },
   strict: process.env.NODE_ENV !== 'production',
   plugins: [

@@ -17,19 +17,19 @@ interface SetSavedCitiesPayload {
 }
 
 // state
-const state = () => ({
+const state: State = {
   foundCities: null,
   savedCities: [],
-});
+};
 
 // getters
 const getters = {
   getFoundCities: (state: State, getters: any, rootState: any) => {
-    return state.foundCities
+    return state.foundCities;
   },
 
   getSavedCities: (state: State, getters: any, rootState: any) => {
-    return state.savedCities
+    return state.savedCities;
   }
 }
 
