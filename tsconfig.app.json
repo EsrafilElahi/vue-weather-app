@@ -7,9 +7,11 @@
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
+    "allowJs": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
+    "types": ["node", "vue"],
 
     "baseUrl": ".",
     "paths": {
