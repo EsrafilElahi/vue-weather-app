@@ -10,6 +10,7 @@ interface Props {
 // const dialogOpen2 = defineModel("dialogOpen2");
 const dialogOpen = defineModel<boolean>("dialogOpen");
 const props = defineProps<Props>();
+console.log("props :", props);
 </script>
 
 <template>

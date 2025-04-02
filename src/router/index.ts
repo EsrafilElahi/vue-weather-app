@@ -29,7 +29,7 @@ export const router: Router = createRouter({
   ],
 });
 
-const waitForStorageToBeReady = async (to: RouteLocationNormalizedGeneric, from: RouteLocationNormalizedGeneric, next: NavigationGuardNext) => {
+const waitForStorageToBeReady = async (_to: RouteLocationNormalizedGeneric, _from: RouteLocationNormalizedGeneric, next: NavigationGuardNext) => {
   await (store as any)?.restored
   next()
 }

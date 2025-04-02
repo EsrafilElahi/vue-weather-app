@@ -4,7 +4,7 @@ import {
   computed,
   defineAsyncComponent,
   onBeforeUnmount,
-  watchEffect,
+  // watchEffect,
 } from "vue";
 import LoadingComponent from "@/components/LoadingComponent.vue";
 import ErrorComponent from "@/components/ErrorComponent.vue";

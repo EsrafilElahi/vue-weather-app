@@ -14,7 +14,7 @@ const state: State = {
 
 // getters
 const getters = {
-  getInfoComplete: (state: State, getters: any, rootState: any) => {
+  getInfoComplete: (state: State, _getters: any, _rootState: any) => {
     return state
   }
 }

@@ -1,4 +1,3 @@
-// plugins/custom-logger.ts
 import type { Store, MutationPayload, ActionPayload } from 'vuex'
 
 interface LoggerOptions {
@@ -58,7 +57,7 @@ export function createCustomLogger(options: LoggerOptions = {}) {
             defaultOptions.logger.log('%c current state', 'color: #4CAF50; font-weight: bold', state)
           }
         },
-        after: (action: ActionPayload, state) => {
+        after: (_action: ActionPayload, state) => {
           defaultOptions.logger.log('%c next state', 'color: #4CAF50; font-weight: bold', state)
           defaultOptions.logger.groupEnd?.()
         }

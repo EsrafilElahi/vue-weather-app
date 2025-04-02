@@ -24,11 +24,11 @@ const state: State = {
 
 // getters
 const getters = {
-  getFoundCities: (state: State, getters: any, rootState: any) => {
+  getFoundCities: (state: State, _getters: any, _rootState: any) => {
     return state.foundCities;
   },
 
-  getSavedCities: (state: State, getters: any, rootState: any) => {
+  getSavedCities: (state: State, _getters: any, _rootState: any) => {
     return state.savedCities;
   }
 }
@@ -49,7 +49,7 @@ const mutations = {
 
 // actions
 const actions = {
-  setFoundCitiesAction: async ({ state, commit }: { state: State, commit: Commit }, payload: SetFoundCitiesPayload) => {
+  setFoundCitiesAction: async ({ commit }: { state: State, commit: Commit }, payload: SetFoundCitiesPayload) => {
     const { val, abortController } = payload;
 
     if (val?.trim()?.length > 1) {

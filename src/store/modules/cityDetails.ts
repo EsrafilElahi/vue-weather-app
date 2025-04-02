@@ -13,7 +13,7 @@ const state = {
 
 // getters
 const getters = {
-  getCityDetails: (state: State, getters: any, rootState: any) => {
+  getCityDetails: (state: State, _getters: any, _rootState: any) => {
     return state.cityDetails
   }
 }
@@ -30,7 +30,7 @@ const mutations = {
 
 // actions
 const actions = {
-  setCityDetailsAction: async ({ state, commit }: { state: State, commit: Commit }, payload: { city: string, abortController: AbortController }) => {
+  setCityDetailsAction: async ({ commit }: { state: State, commit: Commit }, payload: { city: string, abortController: AbortController }) => {
     const { city, abortController } = payload;
 
     const res = await fetchWeatherCity(city, {
