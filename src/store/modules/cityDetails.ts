@@ -40,6 +40,10 @@ const actions = {
     if (res.cod === 200) {
       commit('setCityDetails', res)
     }
+
+    // code example for understand root: true
+    commit('someMutation') // -> 'foo/someMutation'
+    commit('someMutation', null, { root: true }) // -> 'someMutation'
   }
 }
 
